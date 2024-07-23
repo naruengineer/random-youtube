@@ -28,7 +28,7 @@ const VideosCard: React.FC<VideosCardProps> = ({ video }) => {
           height={360}
           className="mb-4"
         />
-        <h4 className="text-lg font-semibold">
+        <h4 className="text-lg font-semibold underline">
           {truncateString(video.snippet.title, 30)}
         </h4>
         <div className="flex max-w-160">
@@ -48,7 +48,7 @@ const VideosCard: React.FC<VideosCardProps> = ({ video }) => {
               {truncateString(video.snippet.description, 35) || "無し"}
             </p>
             <p className="text-sm text-gray-600">
-              {video.statistics.viewCount}
+              {parseInt(video.statistics.viewCount, 10).toLocaleString()}回
             </p>
             <p className="text-sm text-gray-600">
               {new Date(video.snippet.publishedAt).toLocaleDateString()}

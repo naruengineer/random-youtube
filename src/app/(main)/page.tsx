@@ -42,6 +42,7 @@ const Mainpage: React.FC = () => {
     setLoading(true);
     try {
       const response = await fetch(
+        //クエリとオーダーはエンコードする必要があるらしい
         `/api/search?query=${encodeURIComponent(
           keyword
         )}&publishedAfter=${selectedDate}&maxResults=5&order=${encodeURIComponent(
