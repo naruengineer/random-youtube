@@ -13,7 +13,7 @@ const VideosCard: React.FC<VideosCardProps> = ({ video }) => {
   return (
     <div
       key={video.id}
-      className="bg-white p-10 w-200 shadow-md rounded-lg animate-scale-in-center-1 mb-10 flex flex-col items-center justify-center"
+      className="bg-white ph:w-60 p-10 w-200 shadow-md rounded-lg animate-scale-in-center-1 mb-10 flex flex-col items-center justify-center"
     >
       <a
         href={`https://www.youtube.com/watch?v=${video.id}`}
