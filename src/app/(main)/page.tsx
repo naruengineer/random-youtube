@@ -29,7 +29,7 @@ const Mainpage: React.FC = () => {
   const startOfYear = new Date(now.getFullYear(), 0, 1);
   const startOfYearRFC3339 = startOfYear.toISOString();
 
-  //キーワード生成ボタンの処理
+  //キーワード生成ボタンの処理　//ランダムに生成している動きをつける
   const handleRandomKeyword = () => {
     let randomIndex;
     randomIndex = Math.floor(Math.random() * Keywords.length);
@@ -42,7 +42,7 @@ const Mainpage: React.FC = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        //クエリとオーダーはエンコードする必要があるらしい
+        //クエリとオーダーはエンコードする必要あり
         `/api/search?query=${encodeURIComponent(
           keyword
         )}&publishedAfter=${selectedDate}&maxResults=5&order=${encodeURIComponent(
