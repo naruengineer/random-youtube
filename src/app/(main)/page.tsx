@@ -60,12 +60,12 @@ const Mainpage: React.FC = () => {
 
   return (
     <div>
-      <div className="flex flex-col items-center justify-center px-28 pt-10 bg-yellow-200">
+      <div className="w-full flex-col items-center justify-center px-4 xl:px-28 pt-10 bg-yellow-200">
         <div className="flex flex-col items-center justify-center">
           <h2 className="font-bold text-xl underline mb-3">検索キーワード</h2>
           <div className="flex flex-col items-center justify-center">
-            <div className="h-16 w-104 border-2 border-black bg-white">
-              <p className="text-4xl text-center pt-3">{keyword}</p>
+            <div className="h-16 w-80 sm:w-104 border-2 border-black bg-white">
+              <p className="text-2xl md:text-4xl text-center pt-3">{keyword}</p>
             </div>
             <button
               className={
