@@ -13,14 +13,6 @@ const Header = () => {
           <FaYoutube className="pt-1 ml-2 text-red-600 text-2xl sm:text-4xl" />
         </div>
       </div>
-      <div className="flex">
-        {/* <Link href="login" className="px-4 text-l font-bold">
-          〇
-        </Link>
-        <Link href="logout" className="px-4 text-l font-bold">
-          〇
-        </Link> */}
-      </div>
     </div>
   );
 };

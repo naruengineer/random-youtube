@@ -7,7 +7,7 @@ const Loading = () => {
       aria-label="読込み中"
     >
       <div className="animate-spin h-10 w-10 border-4 border-black rounded-full border-t-transparent"></div>
-      <div className="pt-5">Now Loading...</div>
+      <div className="pt-5 font-mono">Now Loading...</div>
     </div>
   );
 };

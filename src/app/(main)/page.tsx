@@ -24,7 +24,7 @@ const Mainpage: React.FC = () => {
   //今日の分
   const startOfToday = new Date(now.setHours(0, 0, 0, 0));
   const startOfTodayRFC3339 = startOfToday.toISOString();
-  //今月の分
+  //今月の
   const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
   const startOfMonthRFC3339 = startOfMonth.toISOString();
   //今年の分
@@ -38,9 +38,9 @@ const Mainpage: React.FC = () => {
     setKeyword(Keywords[randomIndex].Keyword);
     setClickLimit(clickLimit + 1);
   };
-  //キーワードとタブの中身を確認して
+  //キーワードとタブの中身を確認し、一つでも抜けがあればfalseを返す
   const checkInputs = () => {
-    if (!keyword || !selectedDate || !selectedOrder) {
+    if (!keyword || selectedDate === "all" || selectedOrder === "relevance") {
       return false;
     }
     return true;
