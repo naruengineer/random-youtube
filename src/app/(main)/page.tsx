@@ -7,6 +7,7 @@ import { Keywords } from "../components/Keywords/Keywords";
 import Loading from "./Loading";
 import VideosCard from "../components/VideosCard/VideosCard";
 import { Video } from "../types/Video";
+import ErrorModal from "../components/Modal/ErrorModal";
 
 const Mainpage: React.FC = () => {
   const [keyword, setKeyword] = useState("");
@@ -16,6 +17,7 @@ const Mainpage: React.FC = () => {
   const [selectedOrder, setSelectedOrder] = useState("relevance");
   const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   //日付を取得
   const now = new Date();
@@ -36,9 +38,22 @@ const Mainpage: React.FC = () => {
     setKeyword(Keywords[randomIndex].Keyword);
     setClickLimit(clickLimit + 1);
   };
+  //キーワードとタブの中身を確認して
+  const checkInputs = () => {
+    if (!keyword || !selectedDate || !selectedOrder) {
+      return false;
+    }
+    return true;
+  };
 
   //検索ボタンの処理
   const handleSearch = async () => {
+    //タブとキーワードのいずれかが選択されていない場合はモーダルを表示
+    if (!checkInputs()) {
+      setIsModalOpen(true);
+      return;
+    }
+    //ローディング表示
     setLoading(true);
     try {
       const response = await fetch(
@@ -49,6 +64,7 @@ const Mainpage: React.FC = () => {
           selectedOrder
         )}`
       );
+      //APIから帰ってきたデータをJSON形式でVideosへ格納
       const data: Video[] = await response.json();
       setVideos(data);
       setSearchClick(true);
@@ -115,7 +131,6 @@ const Mainpage: React.FC = () => {
               <option value="viewCount">再生回数</option>
               <option value="rating">評価</option>
             </Select>
-
             <button
               className={
                 searchClick === false
@@ -135,11 +150,13 @@ const Mainpage: React.FC = () => {
           </div>
         </div>
         <hr className="w-full my-2 border-t-2 border-gray-300" />
+
         {loading ? (
           <div className="h-96">
             <Loading />
           </div>
         ) : (
+          //検索結果の表示部分
           <div className="flex flex-col items-center justify-center">
             <h5 className="font-bold text-xl underline mb-3">検索結果</h5>
             <div className="flex flex-col items-center justify-center pb-20">
@@ -154,6 +171,11 @@ const Mainpage: React.FC = () => {
           </div>
         )}
       </div>
+      <ErrorModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        message="※キーワード生成とタブ選択を完了してください"
+      />
     </div>
   );
 };

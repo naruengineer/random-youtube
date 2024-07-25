@@ -44,6 +44,7 @@ const VideosCard: React.FC<VideosCardProps> = ({ video }) => {
             <p className="text-xs md:text-sm font-semibold text-gray-600">
               説明:
             </p>
+
             <p className="text-xs md:text-sm font-semibold text-gray-600">
               再生回数:
             </p>
