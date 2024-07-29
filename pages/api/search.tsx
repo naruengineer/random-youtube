@@ -5,24 +5,6 @@ const YOUTUBE_VIDEO_DETAILS_URL =
   "https://www.googleapis.com/youtube/v3/videos";
 const API_KEY = process.env.YOUTUBE_API_KEY;
 
-type Video = {
-  id: string;
-  snippet: {
-    title: string;
-    description: string;
-    publishedAt: string;
-    thumbnails: {
-      default: {
-        url: string;
-      };
-    };
-  };
-  statistics: {
-    likeCount: number;
-    viewCount: string;
-  };
-};
-
 export default async function searchVideos(
   req: NextApiRequest,
   res: NextApiResponse
@@ -34,7 +16,7 @@ export default async function searchVideos(
     order = "relevance",
     videoDuration = "medium",
   } = req.query;
-
+  //サーチ内容の型を確認
   const queryStr = typeof query === "string" ? query : "";
   const publishedAfterStr =
     typeof publishedAfter === "string" ? publishedAfter : "";
@@ -43,12 +25,12 @@ export default async function searchVideos(
   const videoDurationStr =
     typeof videoDuration === "string" ? videoDuration : "medium";
 
-  // queryStr が空の場合に 400 エラーを返す
+  // queryStr が空の場合には400 エラーを返す
   if (!queryStr) {
-    res.status(400).json({ error: "Invalid query parameters" });
+    res.status(400).json({ error: "query parameters error" });
     return;
   }
-
+  //
   try {
     const searchParams = new URLSearchParams({
       part: "snippet",

@@ -8,6 +8,7 @@ import Loading from "./Loading";
 import VideosCard from "../components/VideosCard/VideosCard";
 import { Video } from "../types/Video";
 import ErrorModal from "../components/Modal/ErrorModal";
+import Footer from "../components/Footer/Footer";
 
 const Mainpage: React.FC = () => {
   const [keyword, setKeyword] = useState("");
@@ -31,14 +32,14 @@ const Mainpage: React.FC = () => {
   const startOfYear = new Date(now.getFullYear(), 0, 1);
   const startOfYearRFC3339 = startOfYear.toISOString();
 
-  //キーワード生成ボタンの処理　//ランダムに生成している動きをつける
+  //キーワード生成ボタンの処理　//ランダムに生成している動きをつけたい
   const handleRandomKeyword = () => {
     let randomIndex;
     randomIndex = Math.floor(Math.random() * Keywords.length);
     setKeyword(Keywords[randomIndex].Keyword);
     setClickLimit(clickLimit + 1);
   };
-  //キーワードとタブの中身を確認し、一つでも抜けがあればfalseを返す
+  //キーワードとタブの中身を抜けが無いか確認し、抜けがある際はfalseを返す
   const checkInputs = () => {
     if (!keyword || selectedDate === "all" || selectedOrder === "relevance") {
       return false;
@@ -69,7 +70,7 @@ const Mainpage: React.FC = () => {
       setVideos(data);
       setSearchClick(true);
     } catch (error) {
-      console.error("動画の取得時にエラーが発生しました:", error);
+      console.error("動画取得時にエラー発生：", error);
     }
     setLoading(false);
   };
@@ -170,6 +171,7 @@ const Mainpage: React.FC = () => {
             </div>
           </div>
         )}
+        <Footer />
       </div>
       <ErrorModal
         isOpen={isModalOpen}

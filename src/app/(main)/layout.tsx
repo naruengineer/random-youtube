@@ -13,7 +13,6 @@ const Mainlayout = ({
       <main className="flex-1 overflow-auto">
         <Providers>{children}</Providers>
       </main>
-      <Footer />
     </div>
   );
 };
